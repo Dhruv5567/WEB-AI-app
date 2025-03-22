@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Data Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Binary Digit Adder</h1>
+    <label for = "input1">Input1</label>
+    <input type="number" id="input1" min="0" max="1">
+    <br>
+    <label for = "input2">Input2</label>
+    <input type="number" id="input2" min="0" max="1">
+    <br>
+    <button id="predictButton">Predict</button>
+    <p id="result"></p>
+    
+    <script>
+
+        document.getElementById("predictButton").onclick = function(){
+
+            const input1 = parseInt(document.getElementById("input1").value);
+            const input2 = parseInt(document.getElementById("input2").value);
+
+            fetch('http://127.0.0.1:5000/predict',{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({
+                    input1: input1,
+                    input2: input2
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = `Prediction: ${data.Prediction}`;
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
+        };
+    </script>
+</body>

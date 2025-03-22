@@ -1,2 +1,1 @@
-# WEB-AI-app
-Dumb ahh project 
+Its a simple test project Im creating for learning purposes . Kinda dumb how Im adding binary digits 😓😓
